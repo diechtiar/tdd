@@ -11,16 +11,15 @@ import java.math.BigInteger;
 
 class PowerCalculatorTest {
 
-	private PowerCalculator powerCalc;
+	private PowerCalculator powerCalc = new PowerCalculator();
 
 	@Test
 	@DisplayName("2 ^ 10 = 1024")
 	void shouldPowerTwoIntegers() {
 		BigInteger base = BigInteger.valueOf(2);
 		BigInteger power = BigInteger.valueOf(10);
-		powerCalc = new PowerCalculator(base, power);
 
-		BigInteger result = powerCalc.calculate();
+		BigInteger result = powerCalc.calculate(base, power);
 
 		// wbudowana asercja JUnit porównuje wartość oczekiwaną (pierwszy parametr) z wartością będącą wynikiem testu
 		// a assertJ ma zupełnie inną budowę. Najpierw jest odwołąnie do testowanego
@@ -39,9 +38,8 @@ class PowerCalculatorTest {
 	void shouldPowerTwoIntegers(int baseParam, int powerParam, int expected) {
 		BigInteger base = BigInteger.valueOf(baseParam);
 		BigInteger power = BigInteger.valueOf(powerParam);
-		powerCalc = new PowerCalculator(base, power);
 
-		BigInteger result = powerCalc.calculate();
+		BigInteger result = powerCalc.calculate(base, power);
 
 		assertThat(result).isEqualTo(BigInteger.valueOf(expected));
 	}

@@ -13,7 +13,7 @@ class PowerCalculatorJUnitTest {
 
 	// wprowadzenie zmiennej reprezentującej testowany obiekt na początku klasy jest  często stosowaną praktyką.
 	// Jedna z konwencji podaje by taka zmienna miała nazwę sut - System Under Test
-	private PowerCalculator powerCalc;
+	private PowerCalculator powerCalc = new PowerCalculator();
 
 	@Test
 	@DisplayName("2 ^ 10 = 1024")
@@ -23,10 +23,9 @@ class PowerCalculatorJUnitTest {
 		// alternatywnie mogło by być: powerCalc = new PowerCalculator(2, 10)
 		BigInteger base = BigInteger.valueOf(2);
 		BigInteger power = BigInteger.valueOf(10);
-		powerCalc = new PowerCalculator(base, power);
 
 		// blok when
-		BigInteger result = powerCalc.calculate();
+		BigInteger result = powerCalc.calculate(base, power);
 
 		// blok then
 		// wbudowana asercja JUnit porównuje wartość oczekiwaną (pierwszy parametr) z wartością będącą wynikiem testu
@@ -45,9 +44,8 @@ class PowerCalculatorJUnitTest {
 	void shouldPowerTwoIntegers(int baseParam, int powerParam, int expected) {
 		BigInteger base = BigInteger.valueOf(baseParam);
 		BigInteger power = BigInteger.valueOf(powerParam);
-		powerCalc = new PowerCalculator(base, power);
 
-		BigInteger result = powerCalc.calculate();
+		BigInteger result = powerCalc.calculate(base, power);
 
 		assertEquals(BigInteger.valueOf(expected), result);
 	}
