@@ -1,6 +1,7 @@
 package pl.sdacademy.tdd.examples;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -48,5 +49,30 @@ class PowerCalculatorJUnitTest {
 		BigInteger result = powerCalc.calculate(base, power);
 
 		assertEquals(BigInteger.valueOf(expected), result);
+	}
+
+	@Test
+	void shouldThrowExceptionIfBaseNull() {
+		BigInteger power = BigInteger.valueOf(2);
+
+		// wbudowany w JUnit mechanizm kontroli wyjątków bardziej pasuje do podziału
+		// na sekcje given/when/then ponieważ nie używa złożonej operacji do kontroli wyjątków.
+		// Mimo tego zwykle nie miesza się matcherów: jeżeli jest używany AssertJ to nie będzie nagle
+		// wykorzystania wbydowanego tylko do kontroli wyjątków
+		Exception exception = assertThrows(IllegalArgumentException.class, () -> powerCalc.calculate(null, power));
+
+		assertEquals("Base cannot be null", exception.getMessage());
+
+	}
+
+
+	@Test
+	void shouldThrowExceptionIfPowerNull() {
+		BigInteger base = BigInteger.valueOf(2);
+
+		Exception exception = assertThrows(IllegalArgumentException.class, () -> powerCalc.calculate(base, null));
+
+		assertEquals("Power cannot be null", exception.getMessage());
+
 	}
 }
