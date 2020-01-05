@@ -3,12 +3,13 @@ package pl.sdacademy.tdd.examples;
 import java.math.BigInteger;
 import java.util.Objects;
 
-public class PowerCalculator {
+public class PowerCalculator implements Power {
 
 	// eliminacja parametrów konstruktora pozwoliła przekształcić
 	// klasę w przykład klasy bezstanowej (nie ma żadnych atrybutów, są tylko metody).
 	// Takie klasy są łatwiejsze w używaniu,
 
+	@Override
 	public BigInteger calculate(BigInteger base, BigInteger power) {
 		if (Objects.isNull(base)) {
 			throw new IllegalArgumentException("Base cannot be null");
