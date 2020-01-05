@@ -9,7 +9,7 @@ import org.junit.jupiter.params.provider.CsvSource;
 
 import java.math.BigInteger;
 
-class PowerCalculatorTest {
+class PowerCalculatorJUnitTest {
 
 	// wprowadzenie zmiennej reprezentującej testowany obiekt na początku klasy jest  często stosowaną praktyką.
 	// Jedna z konwencji podaje by taka zmienna miała nazwę sut - System Under Test
